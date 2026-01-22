@@ -1,0 +1,9 @@
+/.settings/*
+/.vscode/*
+/.flattened-pom.xml
+/target/*
+/.classpath
+/.factorypath
+/.project
+/.idea/
+/*.iml
