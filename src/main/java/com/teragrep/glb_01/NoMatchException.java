@@ -48,7 +48,7 @@ package com.teragrep.glb_01;
 public class NoMatchException extends RuntimeException {
 
     public NoMatchException() {
-        super();
+
     }
 
     public NoMatchException(final String message) {

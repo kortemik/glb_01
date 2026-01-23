@@ -47,16 +47,14 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class BraceExpression implements Regexable {
+public class BraceContinuationExpression implements Regexable {
 
     private final ByteBuffer byteBuffer;
     private final Element element;
-    private final BraceContinuationExpression braceContinuationExpression;
 
-    public BraceExpression(final ByteBuffer byteBuffer, final Element element) {
+    public BraceContinuationExpression(final ByteBuffer byteBuffer, final Element element) {
         this.byteBuffer = byteBuffer;
         this.element = element;
-        this.braceContinuationExpression = new BraceContinuationExpression(byteBuffer, element);
     }
 
     @Override
@@ -64,52 +62,25 @@ public class BraceExpression implements Regexable {
         final int mark = byteBuffer.position();
 
         String rv = "";
-        try {
-            if (!byteBuffer.hasRemaining()) {
-                throw new NoMatchException("not enough content for brace expression");
-            }
-            final byte braceOpen = byteBuffer.get();
-
-            if (braceOpen != '{') {
-                throw new NoMatchException("No opening brace");
-            }
-            else {
-                rv = rv.concat("(");
-            }
-
-            if (byteBuffer.hasRemaining()) {
-                try {
-                    rv = rv.concat(element.asRegex());
-
-                    while (byteBuffer.hasRemaining()) {
-                        rv = rv.concat(braceContinuationExpression.asRegex());
-                    }
-                }
-                catch (NoMatchException e) {
-                    if (!byteBuffer.hasRemaining()) {
-                        throw new NoMatchException("content ends before closing brace"); // missing close brace
-                    }
-                    final byte braceClose = byteBuffer.get();
-
-                    if (braceClose != '}') {
-                        byteBuffer.position(byteBuffer.position() - 1);
-                        throw new NoMatchException("content has no closing brace");
-                    }
-                    else {
-                        rv = rv.concat(")");
-                    }
-                }
-            }
-            else {
-                throw new NoMatchException("content ends before closing brace");
-            }
+        if (!byteBuffer.hasRemaining()) {
+            throw new NoMatchException("Not enough content for brace continuation expression");
         }
-        catch (NoMatchException e) {
+
+        final byte comma = byteBuffer.get();
+        if (comma != ',') {
             byteBuffer.position(mark);
-            throw new NoMatchException("not a brace expression");
+            throw new NoMatchException("Not a brace continuation, missing comma");
+        }
+        else {
+            rv = rv.concat("|");
         }
 
-        // TODO make empty throw IllegalStateException
+        if (!byteBuffer.hasRemaining()) {
+            throw new NoMatchException("brace continuation expression continuation incomplete");
+        }
+        else {
+            rv = rv.concat(element.asRegex());
+        }
 
         return rv;
     }

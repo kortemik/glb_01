@@ -113,6 +113,12 @@ public class GlobTest {
     }
 
     @Test
+    public void testGlobBraceMultipleContinuationExpressions() {
+        Glob glob = new Glob("x{a,b,c}y");
+        Assertions.assertEquals("^\\Qx\\E(\\Qa\\E|\\Qb\\E|\\Qc\\E)\\Qy\\E$", glob.asRegex());
+    }
+
+    @Test
     public void testGlobEscapeExpression() {
         Glob glob = new Glob("test\\{Escape\\}Expressio\\n");
         Assertions.assertEquals("^\\Qtest\\E\\{\\QEscape\\E\\}\\QExpressio\\E\\n$", glob.asRegex());
