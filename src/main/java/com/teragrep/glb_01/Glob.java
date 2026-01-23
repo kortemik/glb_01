@@ -53,14 +53,10 @@ import java.util.List;
 public class Glob {
 
     private final String pattern;
-    private final ByteBuffer byteBuffer;
     private final List<Regexable> regexables;
 
     public Glob(final String pattern) {
         this.pattern = pattern;
-
-        final byte[] bytes = pattern.getBytes(StandardCharsets.UTF_8);
-        this.byteBuffer = ByteBuffer.wrap(bytes);
 
         this.regexables = new ArrayList<>();
         // top level comma
@@ -69,6 +65,8 @@ public class Glob {
     }
 
     public String asRegex() {
+        final byte[] bytes = pattern.getBytes(StandardCharsets.UTF_8);
+        final ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
 
         String rv = "^";
         for (Regexable regexable : regexables) {
