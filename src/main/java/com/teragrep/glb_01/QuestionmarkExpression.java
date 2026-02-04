@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class QuestionmarkExpression implements Regexable {
+public final class QuestionmarkExpression implements Regexable {
 
     public QuestionmarkExpression() {
     }

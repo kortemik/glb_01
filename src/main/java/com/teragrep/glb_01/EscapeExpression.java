@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class EscapeExpression implements Regexable {
+public final class EscapeExpression implements Regexable {
 
     public EscapeExpression() {
     }

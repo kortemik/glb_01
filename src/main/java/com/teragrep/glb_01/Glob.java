@@ -45,8 +45,8 @@
  */
 package com.teragrep.glb_01;
 
-public interface Glob {
+public abstract interface Glob {
 
-    String asRegex();
+    public abstract String asRegex();
 
 }

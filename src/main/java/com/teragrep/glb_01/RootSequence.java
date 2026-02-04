@@ -49,7 +49,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RootSequence implements Regexable {
+public final class RootSequence implements Regexable {
 
     private final List<Regexable> regexables;
 

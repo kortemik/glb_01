@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class CommaCharacter implements Regexable {
+public final class CommaCharacter implements Regexable {
 
     public CommaCharacter() {
     }

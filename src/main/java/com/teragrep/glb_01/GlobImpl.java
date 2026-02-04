@@ -50,7 +50,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
-public class GlobImpl implements Glob {
+public final class GlobImpl implements Glob {
 
     private final String pattern;
     private final List<Regexable> regexables;

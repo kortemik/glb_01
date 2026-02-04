@@ -48,7 +48,7 @@ package com.teragrep.glb_01;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-public class Text implements Regexable {
+public final class Text implements Regexable {
 
     public Text() {
 

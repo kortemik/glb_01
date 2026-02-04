@@ -48,7 +48,7 @@ package com.teragrep.glb_01;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class GlobTest {
+public final class GlobTest {
 
     @Test
     public void testGlobText() {

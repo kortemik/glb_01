@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class CharacterClassExpression implements Regexable {
+public final class CharacterClassExpression implements Regexable {
 
     public CharacterClassExpression() {
     }

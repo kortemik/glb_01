@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class BraceContinuationExpression implements Regexable {
+public final class BraceContinuationExpression implements Regexable {
 
     private final Element element;
 

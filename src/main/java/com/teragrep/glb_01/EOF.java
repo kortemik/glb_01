@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class EOF implements Regexable {
+public final class EOF implements Regexable {
 
     public EOF() {
     }

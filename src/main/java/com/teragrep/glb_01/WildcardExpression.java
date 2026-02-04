@@ -47,7 +47,7 @@ package com.teragrep.glb_01;
 
 import java.nio.ByteBuffer;
 
-public class WildcardExpression implements Regexable {
+public final class WildcardExpression implements Regexable {
 
     public WildcardExpression() {
     }
